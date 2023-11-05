@@ -1,0 +1,146 @@
+
+<style>
+
+    :root{
+        --fotoTilt: 1.5deg;
+        --fotoShift: 15px;
+        --fotoWidth: 200px;
+        --fotoHeight: 200px;
+        --leftTiltduration : 1500ms;
+    }
+    
+        #photoCatalog img{
+            width:var(--fotoWidth);
+            height:var(--fotoHeight);
+            object-fit: cover ;
+            border-radius: 17px;
+            border:solid thin #222;
+            position:absolute;
+            display:none;
+            z-index: -1;
+        }
+    
+     
+        #photoCatalog img:nth-of-type(4){
+            margin-left: calc(3*var(--fotoShift));
+            transform: rotate(calc(3*var(--fotoTilt)));
+            transform-origin:left bottom;
+            filter: blur(1.5px);
+            -webkit-filter: blur(1.5px);
+            opacity:0.3;
+            display:block !important;
+            transition: all 1s ease;
+            z-index: 1 ;
+        }
+    
+        #photoCatalog img:nth-of-type(3){
+            margin-left: calc(2*var(--fotoShift));
+            transform: rotate(calc(2*var(--fotoTilt)));
+            transform-origin:left bottom;  
+            opacity:0.6;
+            display:block !important;
+            transition: all 0.5s ease;
+            z-index: 2 ;
+        }
+    
+        #photoCatalog img:nth-of-type(2){
+            margin-left: var(--fotoShift);
+            transform: rotate(var(--fotoTilt));
+            transform-origin:left bottom;
+            display:block !important;
+            transition: all 0.5s ease;
+            z-index: 3;
+        }
+    
+        #photoCatalog img:first-of-type{
+            display:block !important;
+            margin-left:0;
+            transform: rotate(0deg);
+            transition: all 0.5s ease;
+            z-index: 4 ;
+        }
+
+        .doTiltLeft{
+            animation: tiltLrft var(--leftTiltduration) ease;
+        }
+    
+        
+      @keyframes tiltLrft{
+        0% {  
+            margin-left: 0px;
+            transform: rotate(0);
+            z-index: 4;
+            opacity:1
+        }
+
+        50% {  
+            margin-left: calc(-2.5*var(--fotoShift));
+            transform: rotate(calc(-2.5*var(--fotoTilt)));
+            z-index: 4;
+            opacity:0.9
+        }
+
+        65% {  
+            filter: blur(0);
+            -webkit-filter: blur(0);
+            opacity:0.8
+        }
+       
+        100% {  
+            margin-left: calc(3*var(--fotoShift));
+            transform: rotate(calc(3*var(--fotoTilt)));
+            z-index: -2 ;
+            opacity:0.3;
+            filter: blur(2px);
+            -webkit-filter: blur(2px);
+        }
+       
+      }
+    </style>
+
+    <!--Example images-->
+    <div class="someImages" style="display: none;">
+        <img src="https://lh3.googleusercontent.com/drive-viewer/AJc5JmQxL8aDUMdI92RHOBvAUF5Ot7fR8xcyt1RLt3P208bKGUvnpap6HqdEHgF2Hp6094ChmGbtee4=w1918-h928">
+        <img src="https://lh3.googleusercontent.com/drive-viewer/AJc5JmTensVdA32g750ipVvKhnfki4ZuL-R8Wl2cOIkusqMRcbvsH5-85z09kVc8mnnnscddCikQzhY=w1918-h928">
+        <img  src="https://lh3.googleusercontent.com/drive-viewer/AJc5JmT1ROl4uHijQAPLn2oUAFTV8owZE0iFd_rjY7VUHWy321AniBrsXwsH6M9wUZ78jU74gb1TOBI=w1918-h928">
+        <img  src="https://lh3.googleusercontent.com/drive-viewer/AJc5JmT1ROl4uHijQAPLn2oUAFTV8owZE0iFd_rjY7VUHWy321AniBrsXwsH6M9wUZ78jU74gb1TOBI=w1918-h928">
+        <img  src="https://lh3.googleusercontent.com/drive-viewer/AJc5JmT1ROl4uHijQAPLn2oUAFTV8owZE0iFd_rjY7VUHWy321AniBrsXwsH6M9wUZ78jU74gb1TOBI=w1918-h928">
+        <img  src="https://lh3.googleusercontent.com/drive-viewer/AJc5JmT1ROl4uHijQAPLn2oUAFTV8owZE0iFd_rjY7VUHWy321AniBrsXwsH6M9wUZ78jU74gb1TOBI=w1918-h928">
+    </div>
+    
+    
+    <div id="photoCatalog"></div>
+  
+    
+    <script>
+       createImagesCataloge("someImages");
+       function createImagesCataloge(imagesContainerClass){
+            imgClasses = ["photoCatalogImgFour", "photoCatalogImgThree","photoCatalogImgTwo", "photoCatalogImageOne" ]
+            const photos = document.getElementsByClassName(imagesContainerClass)[0].getElementsByTagName("img");
+            const photoCatalog = document.getElementById("photoCatalog");
+            for(let i=0 ; i<photos.length ; i++){
+                const el = document.createElement("img");
+                el.src = photos[i].src;
+                if(i<imgClasses.length)
+                    el.className = imgClasses[i];
+                photoCatalog.appendChild(el);
+            }
+            var myInterval = setInterval(function() {
+                beginAnimation();
+            }, 3500);
+       }
+     
+       function beginAnimation(){
+        const photoCatalog =  document.getElementById("photoCatalog");
+        const photos = photoCatalog.getElementsByTagName("img");
+        const el = document.createElement("img");
+        el.src = photos[0].src;
+        photos[0].classList.add("doTiltLeft")
+        const leftTiltDuration = getComputedStyle(document.documentElement)
+        .getPropertyValue('--leftTiltduration').replace('ms', '');
+        setTimeout(() => {
+            photos[0].remove();
+            photoCatalog.appendChild(el)
+        },parseInt(leftTiltDuration)-100);
+       }
+    </script>
