@@ -115,7 +115,7 @@
     <script>
        createImagesCataloge("someImages");
        function createImagesCataloge(imagesContainerClass){
-            imgClasses = ["photoCatalogImgFour", "photoCatalogImgThree","photoCatalogImgTwo", "photoCatalogImageOne" ]
+            const imgClasses = ["photoCatalogImgFour", "photoCatalogImgThree","photoCatalogImgTwo", "photoCatalogImageOne" ]
             const photos = document.getElementsByClassName(imagesContainerClass)[0].getElementsByTagName("img");
             const photoCatalog = document.getElementById("photoCatalog");
             for(let i=0 ; i<photos.length ; i++){
