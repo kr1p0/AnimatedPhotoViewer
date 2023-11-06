@@ -4,17 +4,19 @@
     :root{
         --fotoTilt: 1.5deg;
         --fotoShift: 15px;
-        --fotoWidth: 200px;
+        --fotoWidth: 350px;
         --fotoHeight: 200px;
         --leftTiltduration : 1500ms;
+        --keyframesDuration: 1200ms
     }
+
     
         #photoCatalog img{
             width:var(--fotoWidth);
             height:var(--fotoHeight);
             object-fit: cover ;
-            border-radius: 17px;
-            border:solid thin #222;
+            border-radius: 20px;
+            border:solid thin #aaa;
             position:absolute;
             display:none;
             z-index: -1;
@@ -29,7 +31,7 @@
             -webkit-filter: blur(1.5px);
             opacity:0.3;
             display:block !important;
-            transition: all 1s ease;
+            transition: all var(--keyframesDuration) ease;
             z-index: 1 ;
         }
     
@@ -39,7 +41,7 @@
             transform-origin:left bottom;  
             opacity:0.6;
             display:block !important;
-            transition: all 0.5s ease;
+            transition: all var(--keyframesDuration) ease;
             z-index: 2 ;
         }
     
@@ -48,7 +50,7 @@
             transform: rotate(var(--fotoTilt));
             transform-origin:left bottom;
             display:block !important;
-            transition: all 0.5s ease;
+            transition: all var(--keyframesDuration) ease;
             z-index: 3;
         }
     
@@ -56,8 +58,9 @@
             display:block !important;
             margin-left:0;
             transform: rotate(0deg);
-            transition: all 0.5s ease;
+            transition: all var(--keyframesDuration) ease;
             z-index: 4 ;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
         }
 
         .doTiltLeft{
@@ -77,13 +80,15 @@
             margin-left: calc(-2.5*var(--fotoShift));
             transform: rotate(calc(-2.5*var(--fotoTilt)));
             z-index: 4;
-            opacity:0.9
+            opacity:0.9;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
         }
 
         65% {  
             filter: blur(0);
             -webkit-filter: blur(0);
-            opacity:0.8
+            opacity:0.8;
+            
         }
        
         100% {  
@@ -93,6 +98,7 @@
             opacity:0.3;
             filter: blur(2px);
             -webkit-filter: blur(2px);
+            box-shadow:none;
         }
        
       }
@@ -100,12 +106,19 @@
 
     <!--Example images-->
     <div class="someImages" style="display: none;">
-        <img src="https://lh3.googleusercontent.com/drive-viewer/AJc5JmQxL8aDUMdI92RHOBvAUF5Ot7fR8xcyt1RLt3P208bKGUvnpap6HqdEHgF2Hp6094ChmGbtee4=w1918-h928">
-        <img src="https://lh3.googleusercontent.com/drive-viewer/AJc5JmTensVdA32g750ipVvKhnfki4ZuL-R8Wl2cOIkusqMRcbvsH5-85z09kVc8mnnnscddCikQzhY=w1918-h928">
-        <img  src="https://lh3.googleusercontent.com/drive-viewer/AJc5JmT1ROl4uHijQAPLn2oUAFTV8owZE0iFd_rjY7VUHWy321AniBrsXwsH6M9wUZ78jU74gb1TOBI=w1918-h928">
-        <img  src="https://lh3.googleusercontent.com/drive-viewer/AJc5JmT1ROl4uHijQAPLn2oUAFTV8owZE0iFd_rjY7VUHWy321AniBrsXwsH6M9wUZ78jU74gb1TOBI=w1918-h928">
-        <img  src="https://lh3.googleusercontent.com/drive-viewer/AJc5JmT1ROl4uHijQAPLn2oUAFTV8owZE0iFd_rjY7VUHWy321AniBrsXwsH6M9wUZ78jU74gb1TOBI=w1918-h928">
-        <img  src="https://lh3.googleusercontent.com/drive-viewer/AJc5JmT1ROl4uHijQAPLn2oUAFTV8owZE0iFd_rjY7VUHWy321AniBrsXwsH6M9wUZ78jU74gb1TOBI=w1918-h928">
+        <img  src="https://lh3.googleusercontent.com/drive-viewer/AJc5JmTWBc5B6NOY76VR7Jb8Mm8WvaWFwu94lyo8y2ewAbYNaQhLQtvpOYl3NUX9FN_z3VxbzkKHSSU=w1919-h978">
+        <img  src="https://lh3.googleusercontent.com/drive-viewer/AJc5JmRuSvs0kp8qGaDDw4xVU4RlBWq9rScIbK_BRJ2GSEu8t1VaU_oAV3_xzasVoXKZhOSNzNEqi1c=w1316-h893">
+        <img  src="https://lh3.googleusercontent.com/drive-viewer/AJc5JmQ2f7esqGQMVyI7GNewDGXM_EHnYQqvp3LP8wFp1AiFatnvZuPJmV2tP9O7BGLTBXai3hJRgxs=w1316-h893">
+        <img  src="https://lh3.googleusercontent.com/drive-viewer/AJc5JmTnngeBfmgX6ooqD3PwHQf1Tj5B47Lp5X7xZmbC8-nrdVnezWAoCf1fHCASC69MwPWQC6dIwIQ=w1349-h649">
+        <img  src="https://lh3.googleusercontent.com/drive-viewer/AJc5JmTWBc5B6NOY76VR7Jb8Mm8WvaWFwu94lyo8y2ewAbYNaQhLQtvpOYl3NUX9FN_z3VxbzkKHSSU=w1919-h978">
+    </div>
+    <div class="someImages" style="display: none;">
+        <img  src="https://drive.google.com/uc?export=view&id=1mbTjTvKCpyY1oO1gtZqBunU1liWE915a">
+        <img  src="https://drive.google.com/uc?export=view&id=16QDtcp7izvqiFFtlMNxTNZAXNBJG65B4">
+        <img  src="https://drive.google.com/uc?export=view&id=1aQUcj3QJRzd5iWhcB66yuSUKRyM1_hme">
+        <img  src="http://drive.google.com/uc?export=view&id=1X0sKTyelaziVfy4DnRrTABe2kilu06n_">
+        <img  src="http://drive.google.com/uc?export=view&id=1_YRZ0ZPCu6sAPoxCgZs0yTJYVy9XxcxG">
+        <img  src="http://drive.google.com/uc?export=view&id=1gkxXgT-uBYyRswXLxJ3bIX7Zzn7VCp0O">
     </div>
     
     
@@ -115,8 +128,12 @@
     <script>
        createImagesCataloge("someImages");
        function createImagesCataloge(imagesContainerClass){
-            const imgClasses = ["photoCatalogImgFour", "photoCatalogImgThree","photoCatalogImgTwo", "photoCatalogImageOne" ]
-            const photos = document.getElementsByClassName(imagesContainerClass)[0].getElementsByTagName("img");
+        const imgClasses = ["photoCatalogImgFour", "photoCatalogImgThree","photoCatalogImgTwo", "photoCatalogImageOne" ]
+            const photoCatalogs = document.getElementsByClassName(imagesContainerClass);
+            var photos = [];
+            for(let i=0 ; i<photoCatalogs.length ; i++){
+                 photos = [...photos , ...photoCatalogs[i].getElementsByTagName("img")]
+            }
             const photoCatalog = document.getElementById("photoCatalog");
             for(let i=0 ; i<photos.length ; i++){
                 const el = document.createElement("img");
